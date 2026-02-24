@@ -14,6 +14,20 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("andrew id")) {
     return "ascharpf";
   }
+  if (query.toLowerCase().includes("plus")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const sum = parseInt(numbers[0]) + parseInt(numbers[1]);
+      return sum.toString();
+    }
+  }
+  if (query.toLowerCase().includes("largest")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const largest = Math.max(...numbers.map(Number));
+      return largest.toString();
+    }
+  }
 
   return "";
 }
