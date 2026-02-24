@@ -57,12 +57,28 @@ export default function QueryProcessor(query: string): string {
       return product.toString();
     }
   }
-  // if (query.toLowerCase().includes("primed")) {
-  //   const numbers = query.match(/\d+/g);
-  //   if (numbers && numbers.length >= 2) {
-      
-  //   }
-  // }
+  if (query.toLowerCase().includes("primes")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      for (let i=0; i<numbers.length; i++){
+        let value=Number(numbers[i])
+        let isPrime=true
+        if (value <= 1) {
+          isPrime = false;
+        } else {
+          for (let j = 2; j <= Math.sqrt(value); j++) {
+            if (value % j === 0) {
+              isPrime = false;
+              break;
+            }
+          }
+        }
+        if (isPrime){
+          return value.toString()
+        }
+      }
+    }
+  }
 
   return "";
 }
