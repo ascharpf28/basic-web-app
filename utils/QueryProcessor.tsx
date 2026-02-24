@@ -61,6 +61,15 @@ export default function QueryProcessor(query: string): string {
       return product.toString();
     }
   }
+  if (query.toLowerCase().includes("power")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const base = parseInt(numbers[0]) 
+      const pow= parseInt(numbers[1])
+      let result = Math.pow(base, pow)
+      return result.toString();
+    }
+  }
   if (query.toLowerCase().includes("primes")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
