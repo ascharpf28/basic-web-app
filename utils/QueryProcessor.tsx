@@ -70,6 +70,26 @@ export default function QueryProcessor(query: string): string {
       return result.toString();
     }
   }
+  if (query.toLowerCase().includes("plus multiplied by")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const first = parseInt(numbers[0]) 
+      const second= parseInt(numbers[1])
+      const third = parseInt(numbers[2])
+      let result = (first+second) * third
+      return result.toString();
+    }
+  }
+  if (query.toLowerCase().includes("multiplied by plus")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const first = parseInt(numbers[0]) 
+      const second= parseInt(numbers[1])
+      const third = parseInt(numbers[2])
+      let result = (first*second) + third
+      return result.toString();
+    }
+  }
   if (query.toLowerCase().includes("primes")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
