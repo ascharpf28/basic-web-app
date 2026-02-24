@@ -76,7 +76,7 @@ export default function QueryProcessor(query: string): string {
       const first = parseInt(numbers[0]) 
       const second= parseInt(numbers[1])
       const third = parseInt(numbers[2])
-      let result = (first+second) * third
+      let result = first+ (second * third)
       return result.toString();
     }
   }
@@ -88,6 +88,16 @@ export default function QueryProcessor(query: string): string {
       const third = parseInt(numbers[2])
       let result = (first*second) + third
       return result.toString();
+    }
+  }
+  if (query.toLowerCase().includes("anagram")) {
+    const words = query.match(/\d+/g);
+    if (words && words.length >= 2) {
+      const parent = parseInt(words[0]) 
+      for (let i=1; i< words.length; i++){
+        if (words[i].split("").sort().join("") === parent.toString().split("").sort().join("")){
+          return words[i]
+        }
     }
   }
   if (query.toLowerCase().includes("primes")) {
