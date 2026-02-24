@@ -16,8 +16,12 @@ export default function QueryProcessor(query: string): string {
   }
   if (query.toLowerCase().includes("plus")) {
     const numbers = query.match(/\d+/g);
-    if (numbers && numbers.length >= 2) {
+    if (numbers && numbers.length == 2) {
       const sum = parseInt(numbers[0]) + parseInt(numbers[1]);
+      return sum.toString();
+    }
+    if (numbers && numbers.length == 3) {
+      const sum = parseInt(numbers[0]) + parseInt(numbers[1]) + parseInt(numbers[2]);
       return sum.toString();
     }
   }
