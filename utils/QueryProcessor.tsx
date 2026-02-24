@@ -21,6 +21,13 @@ export default function QueryProcessor(query: string): string {
       return sum.toString();
     }
   }
+  if (query.toLowerCase().includes("minus")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const sum = parseInt(numbers[0]) - parseInt(numbers[1]);
+      return sum.toString();
+    }
+  }
   if (query.toLowerCase().includes("largest")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
@@ -28,15 +35,21 @@ export default function QueryProcessor(query: string): string {
       return largest.toString();
     }
   }
-  // if (query.toLowerCase().includes("square and a cube")){
-  //   const numbers = query.match(/\d+/g);
-  //   if (numbers && numbers.length >= 2) {
-  //     for i in 0..numbers.length {
-  //     const square = Math.pow(parseInt(numbers[0]), 2);
-  //     const cube = Math.pow(parseInt(numbers[1]), 3);
-  //     return (square + cube).toString();
-  //   }
-  // }
+  if (query.toLowerCase().includes("square and a cube")){
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      for (let i=0; i< numbers.length; i++){
+        let value=Number(numbers[i])
+        let sqrtVal=Math.floor(Math.sqrt(value))
+        let cubeRootVal=Math.floor(Math.cbrt(value))
+        let finalSq=Math.pow(sqrtVal, 2)
+        let finalCube=Math.pow(cubeRootVal, 3)
+        if (finalSq === value && finalCube === value){
+          return value.toString()
+        }
+      } 
+    }
+  }
   if (query.toLowerCase().includes("multiplied")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
@@ -44,6 +57,12 @@ export default function QueryProcessor(query: string): string {
       return product.toString();
     }
   }
+  // if (query.toLowerCase().includes("primed")) {
+  //   const numbers = query.match(/\d+/g);
+  //   if (numbers && numbers.length >= 2) {
+      
+  //   }
+  // }
 
   return "";
 }
