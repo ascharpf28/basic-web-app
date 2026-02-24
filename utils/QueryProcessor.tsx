@@ -60,6 +60,7 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("primes")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
+      let result = []
       for (let i=0; i<numbers.length; i++){
         let value=Number(numbers[i])
         let isPrime=true
@@ -74,9 +75,10 @@ export default function QueryProcessor(query: string): string {
           }
         }
         if (isPrime){
-          return value.toString()
+          result.push(value.toString())
         }
       }
+      return result.join(", ")
     }
   }
 
